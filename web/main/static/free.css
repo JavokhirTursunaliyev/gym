@@ -1,0 +1,128 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #c4db5e, #92982a);
+    color: white;
+}
+
+/* Navbar */
+#navbar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#navbar .logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+#navbar ul li {
+    margin: 0 15px;
+}
+
+#navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#navbar ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Form Container */
+.container {
+    max-width: 450px;
+    margin: 150px auto 50px auto;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Katta Rasm */
+.big-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 15px auto;
+}
+
+/* Form Styling */
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input, select {
+    background: #444;
+    color: rgb(93, 142, 217);
+}
+
+button {
+    background: #ffcc00;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffdb4d;
+}
+
+/* Center Free Plan Button */
+button:last-of-type {
+    display: block;
+    margin: 20px auto;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px;
+    background: #ffcc00;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #ffdb4d;
+}
+
+/* Step Hide & Show */
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}

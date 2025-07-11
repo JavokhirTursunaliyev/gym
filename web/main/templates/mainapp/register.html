@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Hulk Gym</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <style>
+        body {
+            background: url("{% static 'images/6.jpg' %}") no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Sign Up for Hulk Gym</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password1" placeholder="Create Password" required>
+            <input type="password" name="password2" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <a href="{% url 'login' %}">Already have an account? Login</a>
+    </div>
+
+</body>
+</html>

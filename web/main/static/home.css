@@ -1,0 +1,70 @@
+/* General page styling */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #007bff !important;
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    color: #333333 !important;
+    font-weight: 500;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #007bff !important;
+}
+
+/* Buttons in Navbar */
+.btn {
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 6px 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-outline-danger {
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Page Content */
+.container {
+    margin-top: 60px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}

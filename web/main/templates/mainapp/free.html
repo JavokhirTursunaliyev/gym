@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Gym Plan</title>
+    <link rel="stylesheet" href="{% static 'free.css'%}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="logo">🏋️‍♂️ Hulk Gym</div>
+        <ul>
+            <li><a href="{% url 'home'%}">HOME</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2 id="question-title">Let's Get Your Free Workout Plan!</h2>
+
+        <!-- Form Steps -->
+        <div class="step active" id="step-1">
+            <img src="{% static 'height.jpg'%}" alt="Height" class="big-image">
+            <label>Height (cm):</label>
+            <input type="number" id="height" placeholder="Enter your height">
+            <button onclick="nextStep(2)">Next</button>
+        </div>
+
+        <div class="step" id="step-2">
+            <img src="{% static 'weight.jpg'%}" alt="Weight" class="big-image">
+            <label>Weight (kg):</label>
+            <input type="number" id="weight" placeholder="Enter your weight">
+
+            <button onclick="nextStep(3)">Next</button>
+        </div>
+
+        <div class="step" id="step-3">
+            <img src="{% static 'gender.jpg'%}" alt="Gender" class="big-image">
+            <label>Gender:</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <button onclick="nextStep(4)">Next</button>
+
+        </div>
+
+        <div class="step" id="step-4">
+            <img src="{% static 'push-apps.jpg'%}" alt="Push-ups" class="big-image">
+            <label>Max Push-ups:</label>
+            <input type="number" id="pushups" placeholder="Enter max push-ups">
+            <button onclick="generatePlan()">Get Plan</button>
+
+        </div>
+
+        <div class="step" id="step-5">
+            <h2>Your Workout Plan:</h2>
+            <div id="plan"></div>
+            <button onclick="restart()">Restart</button>
+        </div>
+
+        <a href="{% url 'home'%}" class="back-btn">Back to Home</a>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function nextStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-${step}`).classList.add('active');
+            currentStep = step;
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-${step}`).classList.add('active');
+            currentStep = step;
+        }
+
+        function generatePlan() {
+            const height = document.getElementById("height").value;
+            const weight = document.getElementById("weight").value;
+            const gender = document.getElementById("gender").value;
+            const pushups = document.getElementById("pushups").value;
+
+            if (!height || !weight || !pushups) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            let plan = `<p>Based on your data:</p>`;
+            plan += `<p>📏 Height: ${height} cm</p>`;
+            plan += `<p>⚖️ Weight: ${weight} kg</p>`;
+            plan += `<p>🧑 Gender: ${gender}</p>`;
+            plan += `<p>💪 Max Push-ups: ${pushups}</p>`;
+
+            // Workout recommendations
+            plan += `<h3>Recommended Workout:</h3>`;
+            if (pushups < 10) {
+                plan += `<p>🔹 Beginner Level: Focus on strength training with bodyweight exercises.</p>`;
+                plan += `<p>🔹 3 sets of 10 push-ups, squats, and lunges.</p>`;
+            } else if (pushups < 30) {
+                plan += `<p>🔹 Intermediate Level: Mix bodyweight and light weight training.</p>`;
+                plan += `<p>🔹 4 sets of 15 push-ups, burpees, and jump squats.</p>`;
+            } else {
+                plan += `<p>🔹 Advanced Level: Increase intensity with weights and endurance training.</p>`;
+                plan += `<p>🔹 5 sets of 20 push-ups, deadlifts, and sprints.</p>`;
+            }
+
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-5`).classList.add('active');
+            document.getElementById("plan").innerHTML = plan;
+        }
+
+        function restart() {
+            document.getElementById(`step-5`).classList.remove('active');
+            document.getElementById(`step-1`).classList.add('active');
+            currentStep = 1;
+        }
+    </script>
+
+</body>
+</html>

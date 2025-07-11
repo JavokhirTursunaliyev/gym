@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop</title>
+  <!-- <link rel="stylesheet" href="{% static 'shop.css' %}"> -->
+  <style>
+    /* === shop.css inline for simplicity === */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 1rem 2rem;
+    }
+
+    .navbar h1 {
+      color: #FFD700;
+      font-size: 1.8rem;
+    }
+
+    .navbar nav a {
+      color: #FFD700;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .navbar nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Category Filter */
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+      background-color: #111;
+    }
+
+    .category-link {
+      color: #FFD700;
+      text-decoration: none;
+      border: 2px solid #FFD700;
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      transition: 0.3s ease;
+    }
+
+    .category-link:hover {
+      background-color: #FFD700;
+      color: #000;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .product-card {
+      background-color: #111;
+      border: 1px solid #333;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-info {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      color: #FFD700;
+    }
+
+    .price {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .actions button {
+      background-color: #FFD700;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .actions button:hover {
+      background-color: #e6c200;
+    }
+
+    .heart {
+      font-size: 1.5rem;
+      color: #FFD700;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .heart:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>My Shop</h1>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'shop' %}">Shop</a>
+    </nav>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="category-filter">
+    <a href="{% url 'shop' %}" class="category-link">All</a>
+    {% for key, value in categories %}
+      <a href="?category={{ key }}" class="category-link">{{ value }}</a>
+    {% endfor %}
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+      <img src="{{ product.img }}" alt="">
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="price">${{ product.price }}</p>
+        <div class="actions">
+          <button onclick="addToCart('{{ product.id }}')">Korzinkaga</button>
+          <span class="heart" onclick="toggleFavorite('{{ product.id }}', this)">&#x2665;</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function addToCart(productId) {
+      alert("Added product " + productId + " to cart!");
+      // You can integrate AJAX here
+    }
+
+    function toggleFavorite(productId, element) {
+      element.classList.toggle("favorited");
+      alert("Toggled favorite for product " + productId);
+    }
+  </script>
+
+</body>
+</html>
